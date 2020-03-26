@@ -1,13 +1,16 @@
 //#pragma once
 #include <vector>
+#include <SFML/System/Vector2.hpp>
 using namespace std;
 
 class Map {
-	int size[2];
+	//int size[2];
+	sf::Vector2i size;
 	vector<vector<int> > tiles;
 public:
-	Map(int x, int y);
-	void set_tile(int x, int y, bool val);
-	int get_tile(int x, int y);
+	Map(const sf::Vector2i& size);
+	void set_tile(const sf::Vector2i& tile, bool val);
+	int get_tile(const sf::Vector2i& tile);
 	void draw();
+	void draw_grid();
 };
