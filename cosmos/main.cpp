@@ -1,7 +1,7 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
-#include "Map.h"
-#include "Unit.h"
+#include "map.h"
+#include "unit.h"
 
 sf::RenderWindow window(sf::VideoMode(800, 800), "cosmos");
 
