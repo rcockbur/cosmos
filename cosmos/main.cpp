@@ -9,19 +9,15 @@ sf::Vector2f tile_size(20., 20.);
 sf::Vector2i tile_count(20, 10);
 sf::Vector2f grid_size(tile_size.x * tile_count.x, tile_size.y * tile_count.y);
 
-sf::CircleShape map_shape;
 sf::RectangleShape unit_shape;
 sf::RectangleShape line_horizontal;
 sf::RectangleShape line_vertical;
-float shape_size = 10.;
-
-
-
 
 int main()
 {
-	map_shape.setRadius(shape_size);
-	map_shape.setFillColor(sf::Color::Green);
+	Map map(tile_count);
+	Unit unit(3, 3);
+
 	unit_shape.setSize(sf::Vector2f(tile_size.x - 1, tile_size.y - 1));
 	unit_shape.setFillColor(sf::Color::Red);
 	line_horizontal.setSize(sf::Vector2f(1, grid_size.y));
@@ -29,9 +25,6 @@ int main()
 	line_vertical.setSize(sf::Vector2f(grid_size.x, 1));
 	line_vertical.setFillColor(sf::Color::White);
 
-
-	Map map(tile_count);
-	Unit unit(3, 3);
 	map.set_tile(sf::Vector2i(1, 1), false);
 	map.set_tile(sf::Vector2i(2, 1), false);
 
@@ -74,7 +67,6 @@ int main()
 			}
 		}
 		window.clear();
-		map.draw();
 		map.draw_grid();
 		unit.draw();
 		window.display();

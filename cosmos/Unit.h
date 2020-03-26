@@ -5,8 +5,6 @@
 using namespace std;
 
 class Unit {
-	//int tile[2];
-	//vector <int> tile;
 	sf::Vector2i tile;
 	
 public:
