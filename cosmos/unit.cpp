@@ -1,9 +1,8 @@
 #include "Unit.h"
 #include <SFML/Graphics.hpp>
+#include "map.h"
 
-extern sf::RenderWindow window;
-extern sf::RectangleShape unit_shape;
-extern sf::Vector2f tile_size;
+extern Map my_map;
 
 Unit::Unit(sf::Vector2i& tile) {
 	this->tile.x = tile.x;
@@ -23,11 +22,6 @@ void Unit::set_tile(sf::Vector2i& tile) {
 sf::Vector2i& Unit::get_tile() {
 	return tile;
 
-}
-
-void Unit::draw() {
-	unit_shape.setPosition(tile.x * tile_size.x + 1, tile.y * tile_size.y + 1);
-	window.draw(unit_shape);
 }
 
 void Unit::move_by(const sf::Vector2i& vec) {

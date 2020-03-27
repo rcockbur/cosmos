@@ -1,4 +1,4 @@
-//#pragma once
+#pragma once
 #include <vector>
 #include <SFML/System/Vector2.hpp>
 using namespace std;
@@ -10,5 +10,5 @@ public:
 	Map(const sf::Vector2i& size);
 	void set_tile(const sf::Vector2i& tile, bool val);
 	int get_tile(const sf::Vector2i& tile);
-	void draw_grid();
+	sf::Vector2i& get_size();
 };

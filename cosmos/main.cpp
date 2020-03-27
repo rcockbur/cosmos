@@ -2,31 +2,24 @@
 #include <iostream>
 #include "map.h"
 #include "unit.h"
+#include "graphics.h"
 
 sf::RenderWindow window(sf::VideoMode(800, 800), "cosmos");
 
 sf::Vector2f tile_size(20., 20.);
 sf::Vector2i tile_count(20, 10);
 sf::Vector2f grid_size(tile_size.x * tile_count.x, tile_size.y * tile_count.y);
-
-sf::RectangleShape unit_shape;
-sf::RectangleShape line_horizontal;
-sf::RectangleShape line_vertical;
+Map my_map(tile_count);
 
 int main()
 {
-	Map map(tile_count);
+	
 	Unit unit(3, 3);
 
-	unit_shape.setSize(sf::Vector2f(tile_size.x - 1, tile_size.y - 1));
-	unit_shape.setFillColor(sf::Color::Red);
-	line_horizontal.setSize(sf::Vector2f(1, grid_size.y));
-	line_horizontal.setFillColor(sf::Color::White);
-	line_vertical.setSize(sf::Vector2f(grid_size.x, 1));
-	line_vertical.setFillColor(sf::Color::White);
+	init_graphics();
 
-	map.set_tile(sf::Vector2i(1, 1), false);
-	map.set_tile(sf::Vector2i(2, 1), false);
+	my_map.set_tile(sf::Vector2i(1, 1), false);
+	my_map.set_tile(sf::Vector2i(2, 1), false);
 
 	while (window.isOpen()) {
 		sf::Clock clock;
@@ -67,8 +60,8 @@ int main()
 			}
 		}
 		window.clear();
-		map.draw_grid();
-		unit.draw();
+		draw_map(map);
+		draw_unit(unit);
 		window.display();
 	}
 	return 0;
