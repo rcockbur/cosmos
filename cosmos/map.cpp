@@ -8,16 +8,16 @@ Map::Map(const sf::Vector2i& size) {
 	for (int i = 0; i < this->size.x; i++) {
 		tiles[i].resize(this->size.y);
 		for (int j = 0; j < this->size.y; j++) {
-			tiles[i][j] = true;
+			tiles[i][j] = nullptr;
 		}
 	}
 }
 
-void Map::set_tile(const sf::Vector2i& tile, bool val) {
-	tiles[tile.x][tile.y] = val;
+void Map::set_tile(const sf::Vector2i& tile, Block * block) {
+	tiles[tile.x][tile.y] = block;
 }
 
-int Map::get_tile(const sf::Vector2i& tile) {
+Block * Map::get_tile(const sf::Vector2i& tile) {
 	return tiles[tile.x][tile.y];
 }
 
