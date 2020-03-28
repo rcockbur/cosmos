@@ -16,12 +16,12 @@ public:
 };
 
 class Unit {
-	sf::Vector2i tile;
+	sf::Vector2f position;
 	
 public:
-	Unit(sf::Vector2i& tile);
-	Unit(int x, int y);
-	void set_tile(sf::Vector2i& tile);
-	sf::Vector2i& get_tile();
-	void move_by(const sf::Vector2i&);
+	Unit(sf::Vector2f& tile);
+	Unit(float x, float y);
+	void set_position(sf::Vector2f& tile);
+	sf::Vector2f& get_position();
+	void move_by(const sf::Vector2f&);
 };

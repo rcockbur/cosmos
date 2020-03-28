@@ -38,29 +38,29 @@ void Block::move_by(const sf::Vector2i& vec) {
 
 
 
-Unit::Unit(sf::Vector2i& tile) {
-	this->tile.x = tile.x;
-	this->tile.y = tile.y;
+Unit::Unit(sf::Vector2f& tile) {
+	this->position.x = tile.x;
+	this->position.y = tile.y;
 	all_units.push_back(this);
 }
 
-Unit::Unit(int x, int y) {
-	this->tile.x = x;
-	this->tile.y = y;
+Unit::Unit(float x, float y) {
+	this->position.x = x;
+	this->position.y = y;
 	all_units.push_back(this);
 }
 
-void Unit::set_tile(sf::Vector2i& tile) {
-	this->tile.x = tile.x;
-	this->tile.y = tile.y;
+void Unit::set_position(sf::Vector2f& tile) {
+	this->position.x = tile.x;
+	this->position.y = tile.y;
 }
 
-sf::Vector2i& Unit::get_tile() {
-	return tile;
+sf::Vector2f& Unit::get_position() {
+	return position;
 
 }
 
-void Unit::move_by(const sf::Vector2i& vec) {
-	tile.x = tile.x + vec.x;
-	tile.y = tile.y + vec.y;
+void Unit::move_by(const sf::Vector2f& vec) {
+	position.x = position.x + vec.x;
+	position.y = position.y + vec.y;
 }
