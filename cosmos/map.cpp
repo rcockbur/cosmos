@@ -1,6 +1,10 @@
 #include "Map.h"
 #include <SFML/Graphics.hpp>
 
+extern sf::Vector2i tile_count;
+
+Map my_map(tile_count);
+
 Map::Map(const sf::Vector2i& size) {
 	this->size.x = size.x;
 	this->size.y = size.y;
@@ -19,8 +23,4 @@ void Map::set_tile(const sf::Vector2i& tile, Block * block) {
 
 Block * Map::get_tile(const sf::Vector2i& tile) {
 	return tiles[tile.x][tile.y];
-}
-
-sf::Vector2i& Map::get_size() {
-	return size;
 }
