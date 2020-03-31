@@ -19,8 +19,9 @@ sf::Vector2f camera_pos(-50, -50);
 int main()
 {
 	init_graphics();
+	init_units();
 
-	Unit *unit = new Unit(sf::Vector2f(0, 0));
+	Unit *unit = new Unit(tile_center_to_world_pos(sf::Vector2i(1, 1)));
 	Block *block_1 = new Block(sf::Vector2i(4, 4));
 	Block *block_2 = new Block(sf::Vector2i(4, 3));
 	Block *block_3 = new Block(sf::Vector2i(4, 2));
@@ -105,13 +106,11 @@ int main()
 		}
 		window.clear();
 		draw_map(my_map);
+		draw_blocks();
+		draw_units();
 
-		for (std::vector<Unit *>::iterator it = all_units.begin(); it != all_units.end(); ++it) {
-			draw_unit(**it);
-		};
 
-		for (std::vector<Block *>::iterator it = all_blocks.begin(); it != all_blocks.end(); ++it)
-			draw_block(**it);
+		
 
 		window.display();
 		if (has_printed)

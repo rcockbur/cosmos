@@ -4,15 +4,18 @@
 #include "map.h"
 #include <iostream>
 #include "utility.h"
+#include <vector>
 //#include <SFML/System/Vector2.hpp>
 
 extern sf::Vector2f grid_size;
 extern sf::Vector2f tile_size;
 extern sf::Vector2f camera_pos;
+extern std::vector <Block *> all_blocks;
+extern std::vector <Unit *> all_units;
 
 sf::RenderWindow window(sf::VideoMode(900, 600), "cosmos");
 
-sf::CircleShape unit_shape;
+sf::RectangleShape unit_shape;
 sf::RectangleShape block_shape;
 sf::RectangleShape line_vertical;
 sf::RectangleShape line_horizontal;
@@ -20,25 +23,20 @@ sf::RectangleShape line_horizontal;
 void init_graphics() {
 	window.setPosition(sf::Vector2i(0, 0));
 
-	unit_shape.setRadius(5);
-	unit_shape.setFillColor(sf::Color::Red);
-	block_shape.setSize(sf::Vector2f(tile_size.x - 1, tile_size.y - 1));
-	block_shape.setFillColor(sf::Color::Magenta);
 	line_vertical.setSize(sf::Vector2f(1, grid_size.y));
 	line_vertical.setFillColor(sf::Color::White);
 	line_horizontal.setSize(sf::Vector2f(grid_size.x, 1));
 	line_horizontal.setFillColor(sf::Color::White);
 }
 
-void draw_unit(const Unit& unit) {
-	unit_shape.setPosition(world_pos_to_screen_pos(unit.position));
-	window.draw(unit_shape);
+void draw_units() {
+	for (std::vector<Unit *>::iterator it = all_units.begin(); it != all_units.end(); ++it)
+		(**it).draw();
 }
 
-void draw_block(const Block& block) {
-	sf::Vector2f pos(block.tile.x * tile_size.x + 1.f, block.tile.y * tile_size.y + 1.f);
-	block_shape.setPosition(world_pos_to_screen_pos(pos));
-	window.draw(block_shape);
+void draw_blocks() {
+	for (std::vector<Block *>::iterator it = all_blocks.begin(); it != all_blocks.end(); ++it)
+		(**it).draw();
 }
 
 void draw_map(const Map& map) {
