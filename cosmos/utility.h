@@ -9,5 +9,3 @@ sf::Vector2f tile_to_screen_pos(sf::Vector2i& tile);
 
 sf::Vector2f screen_pos_to_world_pos(const sf::Vector2f& screen_pos);
 sf::Vector2f world_pos_to_screen_pos(const sf::Vector2f& world_pos);
-
-//void 

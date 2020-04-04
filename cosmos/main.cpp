@@ -21,7 +21,7 @@ int main()
 	init_graphics();
 	init_units();
 
-	Unit *unit = new Unit(tile_center_to_world_pos(sf::Vector2i(1, 1)));
+	Unit *unit = new Unit(sf::Vector2i(1, 1));
 	Block *block_1 = new Block(sf::Vector2i(4, 4));
 	Block *block_2 = new Block(sf::Vector2i(4, 3));
 	Block *block_3 = new Block(sf::Vector2i(4, 2));
@@ -89,7 +89,7 @@ int main()
 					break;
 				}
 				if (event.key.code == sf::Keyboard::U) {
-					try_spawn_unit(world_pos);
+					try_spawn_unit(tile);
 					break;
 				}
 				break;
@@ -109,8 +109,7 @@ int main()
 		draw_blocks();
 		draw_units();
 
-
-		
+		unit->update();
 
 		window.display();
 		if (has_printed)
