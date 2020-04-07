@@ -1,22 +1,29 @@
 #include <SFML/Graphics.hpp>
 #include "graphics.h"
 #include "unit.h"
+#include "block.h"
 #include "map.h"
 #include <iostream>
 #include "utility.h"
 #include <vector>
+#include <sstream>
 
 extern sf::Vector2f grid_size;
 extern sf::Vector2f tile_size;
 extern sf::Vector2f camera_pos;
 extern std::vector <Block *> all_blocks;
 extern std::vector <Unit *> all_units;
+extern Entity * selected_entity;
 
 sf::RenderWindow window(sf::VideoMode(900, 600), "cosmos");
 sf::RectangleShape unit_shape;
 sf::RectangleShape block_shape;
 sf::RectangleShape line_vertical;
 sf::RectangleShape line_horizontal;
+
+sf::Font sansation_font;
+sf::Text sansation_text;
+
 
 void init_graphics() {
 	window.setPosition(sf::Vector2i(0, 0));
@@ -25,6 +32,29 @@ void init_graphics() {
 	line_vertical.setFillColor(sf::Color::White);
 	line_horizontal.setSize(sf::Vector2f(grid_size.x, 2));
 	line_horizontal.setFillColor(sf::Color::White);
+
+	if (!sansation_font.loadFromFile("sansation.ttf"))
+		std::cout << "Error loading font\n";
+
+	
+	std::ostringstream ss;
+	ss << "Hello World , frame count is: ";
+
+	sansation_text.setFont(sansation_font);
+	sansation_text.setCharacterSize(20);
+	sansation_text.setStyle(sf::Text::Bold);
+	sansation_text.setFillColor(sf::Color::White);
+	sansation_text.setOutlineColor(sf::Color::White);
+	sansation_text.setPosition(100, 100);
+	sansation_text.setString(ss.str());
+}
+
+void draw_selected() {
+	if (selected_entity != nullptr) {
+		window.pushGLStates();
+		window.draw(sansation_text);
+		window.popGLStates();
+	}
 }
 
 
@@ -40,11 +70,16 @@ void draw_map(const Map& map) {
 }
 
 void draw_blocks() {
-	for (std::vector<Block *>::iterator it = all_blocks.begin(); it != all_blocks.end(); ++it)
+	for (std::vector<Block *>::iterator it = all_blocks.begin(); it != all_blocks.end(); ++it) {
+		
 		(**it).draw();
+	}
+		
 }
 
 void draw_units() {
-	for (std::vector<Unit *>::iterator it = all_units.begin(); it != all_units.end(); ++it)
+	for (std::vector<Unit *>::iterator it = all_units.begin(); it != all_units.end(); ++it) {
 		(**it).draw();
+		//std::cout << (**it).position.x << "  " << (**it).position.y << std::endl;
+	}
 }

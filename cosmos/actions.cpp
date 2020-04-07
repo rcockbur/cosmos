@@ -1,6 +1,7 @@
 #include "actions.h"
 #include "map.h"
 #include "unit.h"
+#include "block.h"
 
 extern sf::Vector2f grid_size;
 extern sf::Vector2i tile_count;

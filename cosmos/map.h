@@ -1,11 +1,11 @@
 #pragma once
 #include "unit.h"
+#include "block.h"
 #include <vector>
 #include <SFML/System/Vector2.hpp>
 using namespace std;
 
 class Map {
-	
 	vector<vector<Block *> > tiles;
 public:
 	sf::Vector2i size;

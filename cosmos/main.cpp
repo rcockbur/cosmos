@@ -5,6 +5,7 @@
 #include "graphics.h"
 #include "utility.h"
 #include "actions.h"
+#include "block.h"
 
 extern sf::RenderWindow window;
 extern Map my_map;
@@ -19,11 +20,13 @@ sf::Vector2f camera_pos(-50, -50);
 int main()
 {
 	init_graphics();
+	init_entities();
 	init_units();
+	init_blocks();
 
 	Unit *unit = new Unit(sf::Vector2i(1, 1));
-	Block *block_1 = new Block(sf::Vector2i(4, 4));
-	Block *block_2 = new Block(sf::Vector2i(4, 3));
+	Block *block_1 = new Block(sf::Vector2i(4, 6));
+	Block *block_2 = new Block(sf::Vector2i(4, 4));
 	Block *block_3 = new Block(sf::Vector2i(4, 2));
 
 	my_map.set_tile(sf::Vector2i(1, 1), false);
@@ -108,6 +111,7 @@ int main()
 		draw_map(my_map);
 		draw_blocks();
 		draw_units();
+		draw_selected();
 
 		unit->update();
 

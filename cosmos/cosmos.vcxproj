@@ -133,18 +133,22 @@
   <ItemGroup>
     <ClCompile Include="ability.cpp" />
     <ClCompile Include="actions.cpp" />
+    <ClCompile Include="block.cpp" />
+    <ClCompile Include="entity.cpp" />
     <ClCompile Include="graphics.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Map.cpp" />
-    <ClCompile Include="Unit.cpp" />
+    <ClCompile Include="map.cpp" />
+    <ClCompile Include="unit.cpp" />
     <ClCompile Include="utility.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ability.h" />
     <ClInclude Include="actions.h" />
+    <ClInclude Include="block.h" />
+    <ClInclude Include="entity.h" />
     <ClInclude Include="graphics.h" />
-    <ClInclude Include="Map.h" />
-    <ClInclude Include="Unit.h" />
+    <ClInclude Include="map.h" />
+    <ClInclude Include="unit.h" />
     <ClInclude Include="utility.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
