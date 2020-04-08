@@ -8,7 +8,6 @@
 #include "block.h"
 #include "unit_manager.h"
 #include "block_manager.h"
-#include "entity_manager.h"
 
 extern sf::RenderWindow window;
 extern Map my_map;

@@ -136,7 +136,6 @@
     <ClCompile Include="block.cpp" />
     <ClCompile Include="block_manager.cpp" />
     <ClCompile Include="entity.cpp" />
-    <ClCompile Include="entity_manager.cpp" />
     <ClCompile Include="graphics.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="map.cpp" />
@@ -150,7 +149,6 @@
     <ClInclude Include="block.h" />
     <ClInclude Include="block_manager.h" />
     <ClInclude Include="entity.h" />
-    <ClInclude Include="entity_manager.h" />
     <ClInclude Include="graphics.h" />
     <ClInclude Include="map.h" />
     <ClInclude Include="unit.h" />
