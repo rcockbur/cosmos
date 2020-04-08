@@ -7,15 +7,14 @@
 #include <iostream>
 #include <SFML/System/Vector2.hpp>
 #include "ability.h"
+#include <memory>
 
 extern Map my_map;
 extern sf::RenderWindow window; extern sf::Vector2f tile_size;
 extern sf::Vector2i tile_count;
 
-std::vector <Unit *> all_units;
-sf::RectangleShape Unit::shape;
 const sf::Vector2f Unit::size{ 18., 18. };
-
+sf::RectangleShape Unit::shape;
 
 void init_units() {
 	Unit::shape.setSize(Unit::size);
@@ -30,7 +29,6 @@ Unit::Unit(const sf::Vector2i& tile) : Entity()
 	this->position_rect.top = pos.y;
 	this->position_rect.width = size.x;
 	this->position_rect.height = size.y;
-	all_units.push_back(this);
 }
 
 void Unit::move_by(const sf::Vector2f& vec) {
@@ -40,6 +38,12 @@ void Unit::move_by(const sf::Vector2f& vec) {
 
 void Unit::draw() {
 	shape.setPosition(world_pos_to_screen_pos(sf::Vector2f(position_rect.left, position_rect.top)));
+	if (is_selected) {
+		shape.setFillColor(sf::Color::Yellow);
+	}
+	else {
+		shape.setFillColor(sf::Color::Red);
+	}
 	window.draw(shape);
 }
 

@@ -9,7 +9,7 @@ extern sf::Vector2f tile_size;
 extern sf::RenderWindow window; extern sf::Vector2f tile_size;
 extern Map my_map;
 
-std::vector <Block *> all_blocks;
+
 sf::RectangleShape Block::shape;
 const sf::Vector2f Block::size(38, 38);
 const sf::Vector2i Block::footprint(2, 2);
@@ -29,7 +29,6 @@ Block::Block(const sf::Vector2i& tile) : Entity() {
 	position_rect.top = center.y - (size.y / 2);
 	position_rect.width = size.x;
 	position_rect.height = size.y;
-	all_blocks.push_back(this);
 	for (int i = 0; i < footprint.x; i++) {
 		for (int j = 0; j < footprint.y; j++) {
 			sf::Vector2i footprint_tile(tile.x + i, tile.y + j);

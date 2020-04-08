@@ -5,10 +5,13 @@
 void init_entities();
 
 class Entity {
-	bool is_selected;
-public:
-	sf::FloatRect position_rect;
 	
+	
+public:
+	static int entity_id_index;
+	bool is_selected;
+	int entity_id;
+	sf::FloatRect position_rect;
 	Entity();
-	void select();
+	virtual void draw() = 0;
 };

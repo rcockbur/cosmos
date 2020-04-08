@@ -7,12 +7,13 @@
 #include "utility.h"
 #include <vector>
 #include <sstream>
+#include <memory>
 
 extern sf::Vector2f grid_size;
 extern sf::Vector2f tile_size;
 extern sf::Vector2f camera_pos;
 extern std::vector <Block *> all_blocks;
-extern std::vector <Unit *> all_units;
+extern std::vector<Unit *> all_units;
 extern Entity * selected_entity;
 
 sf::RenderWindow window(sf::VideoMode(900, 600), "cosmos");
@@ -27,35 +28,14 @@ sf::Text sansation_text;
 
 void init_graphics() {
 	window.setPosition(sf::Vector2i(0, 0));
-
 	line_vertical.setSize(sf::Vector2f(2, grid_size.y));
 	line_vertical.setFillColor(sf::Color::White);
 	line_horizontal.setSize(sf::Vector2f(grid_size.x, 2));
 	line_horizontal.setFillColor(sf::Color::White);
 
-	if (!sansation_font.loadFromFile("sansation.ttf"))
-		std::cout << "Error loading font\n";
-
-	
-	std::ostringstream ss;
-	ss << "Hello World , frame count is: ";
-
-	sansation_text.setFont(sansation_font);
-	sansation_text.setCharacterSize(20);
-	sansation_text.setStyle(sf::Text::Bold);
-	sansation_text.setFillColor(sf::Color::White);
-	sansation_text.setOutlineColor(sf::Color::White);
-	sansation_text.setPosition(100, 100);
-	sansation_text.setString(ss.str());
+	init_text();
 }
 
-void draw_selected() {
-	if (selected_entity != nullptr) {
-		window.pushGLStates();
-		window.draw(sansation_text);
-		window.popGLStates();
-	}
-}
 
 
 void draw_map(const Map& map) {
@@ -80,6 +60,33 @@ void draw_blocks() {
 void draw_units() {
 	for (std::vector<Unit *>::iterator it = all_units.begin(); it != all_units.end(); ++it) {
 		(**it).draw();
-		//std::cout << (**it).position.x << "  " << (**it).position.y << std::endl;
+	}
+}
+
+void init_text() {
+	if (!sansation_font.loadFromFile("sansation.ttf"))
+		std::cout << "Error loading font\n";
+	
+	sansation_text.setFont(sansation_font);
+	sansation_text.setCharacterSize(20);
+	sansation_text.setStyle(sf::Text::Bold);
+	sansation_text.setFillColor(sf::Color::Yellow);
+	sansation_text.setOutlineColor(sf::Color::Yellow);
+	sansation_text.setPosition(500, 100);
+	
+
+}
+
+void draw_selected() {
+	if (selected_entity != nullptr) {
+		if (dynamic_cast<Unit*>(selected_entity) != nullptr) {
+			window.pushGLStates();
+			window.draw(sansation_text);
+			window.popGLStates();
+			std::ostringstream ss;
+			ss << "entity_id: " << selected_entity->entity_id;
+			sansation_text.setString(ss.str());
+		}
+		
 	}
 }

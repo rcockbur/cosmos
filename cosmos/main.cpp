@@ -6,11 +6,12 @@
 #include "utility.h"
 #include "actions.h"
 #include "block.h"
+#include "unit_manager.h"
+#include "block_manager.h"
+#include "entity_manager.h"
 
 extern sf::RenderWindow window;
 extern Map my_map;
-extern std::vector <Block *> all_blocks;
-extern std::vector <Unit *> all_units;
 
 sf::Vector2f tile_size(20., 20.);
 sf::Vector2i tile_count(20, 10);
@@ -24,10 +25,9 @@ int main()
 	init_units();
 	init_blocks();
 
-	Unit *unit = new Unit(sf::Vector2i(1, 1));
-	Block *block_1 = new Block(sf::Vector2i(4, 6));
-	Block *block_2 = new Block(sf::Vector2i(4, 4));
-	Block *block_3 = new Block(sf::Vector2i(4, 2));
+	Unit * unit = new_unit(sf::Vector2i(1, 1));
+	Block * block_1 = new_block(sf::Vector2i(4, 0));
+	
 
 	my_map.set_tile(sf::Vector2i(1, 1), false);
 	my_map.set_tile(sf::Vector2i(2, 1), false);
@@ -102,18 +102,18 @@ int main()
 					std::cout << "screen_pos:" << screen_pos.x << ", " << screen_pos.y << std::endl;
 					std::cout << "world_pos: " << world_pos.x << ", " << world_pos.y << std::endl;
 					std::cout << "tile:   " << tile.x << ", " << tile.y << std::endl;
+					select_entity(world_pos);
 				}
 			default:
 				break;
 			}
 		}
 		window.clear();
+
 		draw_map(my_map);
 		draw_blocks();
 		draw_units();
 		draw_selected();
-
-		unit->update();
 
 		window.display();
 		if (has_printed)
