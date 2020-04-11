@@ -8,6 +8,7 @@
 #include <vector>
 #include <sstream>
 #include <memory>
+#include "ability.h"
 
 extern sf::Vector2f grid_size;
 extern sf::Vector2f tile_size;
@@ -64,8 +65,18 @@ void draw_units() {
 	}
 }
 
-void draw_selection_outline() {
-	if (selected_entity_ptr != nullptr) {
+void draw_selected_block_outline() {
+	if (selected_entity_ptr != nullptr && dynamic_cast<Block*>(selected_entity_ptr) != nullptr) {
+		Entity& e = (*selected_entity_ptr);
+		sf::Vector2f screen_pos = world_pos_to_screen_pos(sf::Vector2f(e.position_rect.left, e.position_rect.top));
+		selection_outline_shape.setSize(sf::Vector2f(e.position_rect.width, e.position_rect.height));
+		selection_outline_shape.setPosition(screen_pos);
+		window.draw(selection_outline_shape);
+	}
+}
+
+void draw_selected_unit_outline() {
+	if (selected_entity_ptr != nullptr && dynamic_cast<Unit *>(selected_entity_ptr) != nullptr) {
 		Entity& e = (*selected_entity_ptr);
 		sf::Vector2f screen_pos = world_pos_to_screen_pos(sf::Vector2f(e.position_rect.left, e.position_rect.top));
 		selection_outline_shape.setSize(sf::Vector2f(e.position_rect.width, e.position_rect.height));
@@ -92,8 +103,17 @@ void draw_selected_status() {
 	if (selected_entity_ptr != nullptr) {
 		window.pushGLStates();
 		std::ostringstream ss;
-		if (dynamic_cast<Unit*>(selected_entity_ptr) != nullptr) {
-			ss << "entity_id: " << selected_entity_ptr->entity_id;
+		Unit * u_ptr = dynamic_cast<Unit *>(selected_entity_ptr);
+		if (u_ptr != nullptr) {
+			ss << "entity_id: " << selected_entity_ptr->entity_id << std::endl;
+			ss << "queue:     " << u_ptr->ability_queue.size() << std::endl;
+			
+			if (u_ptr->ability_queue.size() > 0) {
+				Move * move_ptr = dynamic_cast<Move *>(u_ptr->ability_queue[0]);
+				if (move_ptr != nullptr) {
+					ss << "path:     " << move_ptr->path.size() << std::endl;
+				}
+			}
 		}
 		else {
 			ss << "entity_id: " << selected_entity_ptr->entity_id;

@@ -17,6 +17,10 @@ sf::Vector2i world_pos_to_tile(const sf::Vector2f& world_pos) {
 	return sf::Vector2i((int)(world_pos.x / tile_size.x), (int)(world_pos.y / tile_size.y));
 }
 
+sf::Vector2f tile_to_world_pos_for_unit(const sf::Vector2i& tile, const Unit& unit) {
+	return sf::Vector2f(((float)tile.x + 0.5f) * (float)tile_size.x - (unit.position_rect.width/2), ((float)tile.y + 0.5f) * (float)tile_size.y - (unit.position_rect.height / 2));
+}
+
 sf::Vector2f tile_center_to_world_pos(const sf::Vector2i& tile) {
 	return sf::Vector2f(((float)tile.x + 0.5f) * (float)tile_size.x, ((float)tile.y + 0.5f) * (float)tile_size.y);
 }

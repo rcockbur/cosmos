@@ -29,6 +29,8 @@ Unit::Unit(const sf::Vector2i& tile) : Entity()
 	this->position_rect.top = pos.y;
 	this->position_rect.width = size.x;
 	this->position_rect.height = size.y;
+	Move * move = new Move((*this), sf::Vector2i(4, 4));
+	this->ability_queue.push_back(move);
 }
 
 void Unit::move_by(const sf::Vector2f& vec) {
@@ -38,13 +40,6 @@ void Unit::move_by(const sf::Vector2f& vec) {
 
 void Unit::draw() {
 	shape.setPosition(world_pos_to_screen_pos(sf::Vector2f(position_rect.left, position_rect.top)));
-	//if (is_selected) {
-	//	shape.setOutlineColor(sf::Color::Yellow);
-	//	shape.setOutlineThickness(1.f);
-	//}
-	//else {
-	//	shape.setOutlineColor(sf::Color::Red);
-	//}
 	window.draw(shape);
 }
 

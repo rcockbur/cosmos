@@ -1,5 +1,7 @@
 #pragma once
 #include <SFML/System/Vector2.hpp>
+#include <list>
+#include "unit.h"
 
 class Unit;
 
@@ -8,8 +10,11 @@ public:
 	virtual bool execute() = 0;
 };
 
-class Move : Ability {
+class Move : public Ability {
 public:
-	Move(Unit& unit, sf::Vector2i& target_tile);
+	std::list<sf::Vector2i> path;
+	Unit& unit;
+
+	Move(Unit& unit, const sf::Vector2i& target_tile);
 	bool execute();
 };

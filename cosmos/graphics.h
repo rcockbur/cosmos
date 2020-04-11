@@ -8,4 +8,5 @@ void draw_units();
 void draw_blocks();
 void draw_map();
 void draw_selected_status();
-void draw_selection_outline();
+void draw_selected_unit_outline();
+void draw_selected_block_outline();

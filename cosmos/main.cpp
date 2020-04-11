@@ -108,12 +108,14 @@ int main()
 				break;
 			}
 		}
-		window.clear();
+		update_units();
 
+		window.clear();
 		draw_map();
 		draw_blocks();
+		draw_selected_block_outline();
 		draw_units();
-		draw_selection_outline();
+		draw_selected_unit_outline();
 		draw_selected_status();
 
 		window.display();
