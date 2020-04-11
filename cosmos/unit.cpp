@@ -38,12 +38,13 @@ void Unit::move_by(const sf::Vector2f& vec) {
 
 void Unit::draw() {
 	shape.setPosition(world_pos_to_screen_pos(sf::Vector2f(position_rect.left, position_rect.top)));
-	if (is_selected) {
-		shape.setFillColor(sf::Color::Yellow);
-	}
-	else {
-		shape.setFillColor(sf::Color::Red);
-	}
+	//if (is_selected) {
+	//	shape.setOutlineColor(sf::Color::Yellow);
+	//	shape.setOutlineThickness(1.f);
+	//}
+	//else {
+	//	shape.setOutlineColor(sf::Color::Red);
+	//}
 	window.draw(shape);
 }
 

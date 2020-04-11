@@ -18,8 +18,12 @@ sf::Vector2i world_pos_to_tile(const sf::Vector2f& world_pos) {
 }
 
 sf::Vector2f tile_center_to_world_pos(const sf::Vector2i& tile) {
-	return sf::Vector2f(((float)tile.x + 0.5) * (float)tile_size.x, ((float)tile.y + 0.5) * (float)tile_size.y);
+	return sf::Vector2f(((float)tile.x + 0.5f) * (float)tile_size.x, ((float)tile.y + 0.5f) * (float)tile_size.y);
 }
 
 sf::Vector2i screen_pos_to_tile(sf::Vector2f& screen_pos);
 sf::Vector2f tile_to_screen_pos(sf::Vector2i& tile);
+
+bool world_pos_within_bounds(const sf::Vector2f& world_pos) {
+	return (world_pos.x >= 0 && world_pos.x < grid_size.x && world_pos.y >= 0 && world_pos.y < grid_size.y);
+}

@@ -32,7 +32,7 @@ Block::Block(const sf::Vector2i& tile) : Entity() {
 	for (int i = 0; i < footprint.x; i++) {
 		for (int j = 0; j < footprint.y; j++) {
 			sf::Vector2i footprint_tile(tile.x + i, tile.y + j);
-			my_map.set_tile(tile, this);
+			my_map.set_tile(footprint_tile, this);
 		}
 	}
 }

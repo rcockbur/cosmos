@@ -13,7 +13,7 @@ extern sf::RenderWindow window;
 extern Map my_map;
 
 sf::Vector2f tile_size(20., 20.);
-sf::Vector2i tile_count(20, 10);
+sf::Vector2i tile_count(20, 20);
 sf::Vector2f grid_size(tile_size.x * tile_count.x, tile_size.y * tile_count.y);
 sf::Vector2f camera_pos(-50, -50);
 
@@ -24,7 +24,8 @@ int main()
 	init_units();
 	init_blocks();
 
-	Unit * unit = new_unit(sf::Vector2i(1, 1));
+	Unit * unit_1 = new_unit(sf::Vector2i(1, 1));
+	Unit * unit_2 = new_unit(sf::Vector2i(1, 2));
 	Block * block_1 = new_block(sf::Vector2i(4, 0));
 	
 
@@ -55,19 +56,19 @@ int main()
 					break;
 				}
 				if (event.key.code == sf::Keyboard::W) {
-					unit->move_by(sf::Vector2f(0, -1));
+					move_selected_by(sf::Vector2f(0, -1));
 					break;
 				}
 				if (event.key.code == sf::Keyboard::A) {
-					unit->move_by(sf::Vector2f(-1, 0));
+					move_selected_by(sf::Vector2f(-1, 0));
 					break;
 				}
 				if (event.key.code == sf::Keyboard::S) {
-					unit->move_by(sf::Vector2f(0, 1));
+					move_selected_by(sf::Vector2f(0, 1));
 					break;
 				}
 				if (event.key.code == sf::Keyboard::D) {
-					unit->move_by(sf::Vector2f(1, 0));
+					move_selected_by(sf::Vector2f(1, 0));
 					break;
 				}
 				if (event.key.code == sf::Keyboard::Up) {
@@ -109,10 +110,11 @@ int main()
 		}
 		window.clear();
 
-		draw_map(my_map);
+		draw_map();
 		draw_blocks();
 		draw_units();
-		draw_selected();
+		draw_selection_outline();
+		draw_selected_status();
 
 		window.display();
 		if (has_printed)
