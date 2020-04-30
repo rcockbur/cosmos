@@ -8,6 +8,9 @@ Move::Move(Unit& unit, const sf::Vector2i& target_tile) : unit(unit) {
 	path.push_back(sf::Vector2i(2., 2.));
 	path.push_back(sf::Vector2i(3., 2.));
 	path.push_back(sf::Vector2i(4., 2.));
+	path.push_back(sf::Vector2i(5., 3.));
+	path.push_back(sf::Vector2i(6., 4.));
+	path.push_back(sf::Vector2i(7., 4.));
 }
 
 bool Move::execute() {
